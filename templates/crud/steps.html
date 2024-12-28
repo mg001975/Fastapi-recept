@@ -1,0 +1,116 @@
+<div class="ml-4 border-2 pl-4">
+    <!-- Steps Table -->
+    <div class="mb-4">
+        <h2 class="text-lg font-semibold">Stap:</h2>
+        <div class="grid grid-cols-5 gap-4 font-bold border-b pb-2">
+            <div></div>
+            <div>Sort</div>
+            <div>Beschrijving</div>
+        </div>
+
+        <!-- Existing Steps -->
+        {% for step in component.steps %}
+        <form 
+            action="/crud/edit_step/{{ step.id }}" 
+            method="post" 
+            class="grid grid-cols-5 gap-4 items-center py-2 border-b"
+        >
+            <!-- Hidden Component ID -->
+            <input type="hidden" name="component_id" value="{{ component.id }}">
+            <input
+            type="text"
+            name="order"
+            id="order"
+            class="w-full border rounded"
+            value="{{ step.order }}"
+            required
+        >     
+            <!-- Step Description -->
+            <input
+                type="text"
+                name="description"
+                id="description"
+                class="w-full border rounded"
+                value="{{ step.description }}"
+                required
+            >                
+
+            <!-- Actions -->
+            <div class="flex space-x-2">
+                <!-- Submit Edit Button -->
+                <button 
+                    type="submit" 
+                    class="bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-600"
+                >
+                    Opslaan
+                </button>
+                <!-- Delete Button -->
+                <a 
+                    href="#" 
+                    onclick="deleteStep({{ step.id }})" 
+                    class="text-red-500 hover:underline"
+                >
+                    Verwijder
+                </a>
+            </div>
+        </form>
+        {% endfor %}
+
+        <!-- Add New Step -->
+        <form action="/crud/create_step/" method="post" class="grid grid-cols-5 gap-4 items-center py-2 border-b mt-4">
+            <!-- Hidden Component ID -->
+            <input type="hidden" name="component_id" value="{{ component.id }}">
+            <input
+                type="text"
+                name="new_order"
+                id="new_order"
+                class="w-full border rounded"
+                placeholder="Nieuwe stap"
+                required
+            >        
+            <!-- New Step Description -->
+            <input
+                type="text"
+                name="new_step_description"
+                id="new_step_description"
+                class="w-full border rounded"
+                placeholder="Nieuwe stap"
+                required
+            >                
+
+            <!-- Actions -->
+            <div>
+                <button 
+                    type="submit" 
+                    class="bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-600"
+                >
+                    Nieuw
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    function deleteStep(stepId) {
+        if (confirm("Are you sure you want to delete this step?")) {
+            fetch(`/crud/delete_step/${stepId}`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            })
+            .then(response => {
+                if (response.ok) {
+                    window.location.reload();  // Refresh the page to show the changes
+                } else {
+                    alert("Error deleting step.");
+                }
+            })
+            .catch(error => {
+                console.error("Error:", error);
+                alert("An error occurred while deleting the step.");
+            });
+        }
+    }
+</script>

@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mx-auto p-6">
+    <h1 class="text-3xl font-bold mb-4">About the Project</h1>
+    <div class="prose whitespace-pre-line">
+        {{ readme_html | safe }}
+    </div>
+</div>
+{% endblock %}

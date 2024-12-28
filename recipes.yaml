@@ -1,0 +1,19 @@
+Recipes:
+- name: test
+  category: test
+  description: tstff
+  prep_time: 1
+  difficulty: '1'
+  RecipeComponent:
+  - component_name: Component test
+    component_description: de
+    Ingredients:
+    - ingredient_name: gg
+      ingredient_amount: '1'
+      ingredient_unit: aa
+    - ingredient_name: aa
+      ingredient_amount: '1'
+      ingredient_unit: gra
+    Steps:
+    - step_description: step 1 test
+    - step_description: test 2 step

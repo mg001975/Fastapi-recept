@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+
+{% block title %}Main form Recipe{% endblock %}
+
+{% block content %}
+<div class="max-w-4xl mx-auto bg-white p-6 rounded shadow mt-8">
+    <h1 class="text-xl font-bold mb-4">Main Recipe Form</h1>
+    {% include 'crud/recipe.html' %}
+    {% if components %}
+        <h2 class="text-lg font-semibold mt-6">Existing Components</h2>
+        {% for component in components %}
+            <div class="border border-gray-200 rounded p-4 mb-4">
+                {% include 'crud/component.html' %}
+                {% include 'crud/ingredients.html' %}
+                {% include 'crud/steps.html' %}            
+            </div>  
+        {% endfor %}
+    {% else %}
+        <p class="text-gray-500">No components available. Add a new component below.</p>
+    {% endif %}
+
+    <h2 class="text-lg font-semibold mt-6">Add New Component</h2>
+        {% include 'crud/component.html' %}
+    </div>   
+</div>
+{% endblock %}

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Recepten pagina</title>
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/styles/default.min.css">
+        <style>
+            .prose {
+                max-width: 65ch;
+            }
+        </style>
+
+        <script src="https://cdn.tailwindcss.com"></script>
+    </head>
+
+
+    {% include 'navbar.html' %}
+
+    {% if message %}
+        <h1>{{ message }}</h1>
+    {% endif %}
+
+    <main class="container mx-auto py-8 px-4">
+        {% block content %}
+        <div class="text-center">
+            <p class="text-gray-500">Content goes here.</p>
+        </div>
+        {% endblock %}
+    </main>
+
+    <footer class="bg-gray-800 text-gray-300 py-4">
+        <div class="container mx-auto text-center">
+            <p class="text-sm">&copy; 2024 recepten pagina. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+
+    </body>
+</html>

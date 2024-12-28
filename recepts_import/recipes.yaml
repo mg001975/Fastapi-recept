@@ -1,0 +1,56 @@
+Recipes:
+- name: Kaufland voor en hoofddeeg
+  category: Pizza
+  description: hoofddeeg directe methode, 12 uur in koelkast
+  prep_time: 15
+  difficulty: easy
+  RecipeComponent:
+  - component_name: Voordeeg
+    component_description: Hoofdeeg kneden, 7 bollen a 230 gram
+    Steps:
+    - step_description: voordeeg kneden, let op zout als laatste toevoegen
+      Ingredients:
+      - ingredient_name: bloem
+        ingredient_amount: 200
+        ingredient_unit: gram
+      - ingredient_name: water
+        ingredient_amount: 200
+        ingredient_unit: gram
+      - ingredient_name: gist
+        ingredient_amount: 2
+        ingredient_unit: gram
+    - step_description: 12 uur in koelkast
+    - step_description: 2 uur uit koelkast
+  - component_name: Hoofddeeg
+    component_description: Maken Hoofdeeg
+    Steps:
+    - step_description: deeg maken
+      Ingredients:
+      - ingredient_name: bloem
+        ingredient_amount: 800
+        ingredient_unit: gram
+      - ingredient_name: water
+        ingredient_amount: 420
+        ingredient_unit: gram
+      - ingredient_name: gist
+        ingredient_amount: 1
+        ingredient_unit: gram
+      - ingredient_name: zout
+        ingredient_amount: 15
+        ingredient_unit: gram
+    - step_description: bollen 4 uur in koelkast
+    - step_description: 2 uur uit koelkast
+  - component_name: Saus
+    component_description: Saus
+    Steps:
+    - step_description: 30 minuten koken
+      Ingredients:
+      - ingredient_name: knoflook
+        ingredient_amount: 1
+        ingredient_unit: teen
+      - ingredient_name: oregano
+        ingredient_amount: 1
+        ingredient_unit: theelepel
+      - ingredient_name: zout
+        ingredient_amount: 1
+        ingredient_unit: theelepel

@@ -1,0 +1,116 @@
+<div class="ml-4 border-2 pl-4">
+    <div class="mb-4">
+        <h2 class="text-lg font-semibold">Ingredienten:</h2>
+        <div class="grid grid-cols-5 gap-4 font-bold border-b pb-2">
+            <div>Ingredient</div>
+            <div>Hoeveelheid</div>
+            <div>Eenheid</div>
+            <div>Actie</div>
+        </div>
+
+        {% for ingredient in component.ingredients %}
+        <form action="/crud/edit_ingredient/{{ ingredient.id }}" method="post" class="grid grid-cols-5 gap-4 items-center py-2 border-b">
+            <input type="hidden" name="component_id" value="{{ component.id }}">
+            <input
+                type="text"
+                name="ingredient_name"
+                id="ingredient_name"
+                class="w-full border rounded"
+                value="{{ ingredient.name }}"
+                required
+            >                
+            <input
+                type="text"
+                name="ingredient_amount"
+                id="ingredient_amount"
+                class="w-full border rounded"
+                value="{{ ingredient.amount }}"
+                required
+            >   
+            <input
+                type="text"
+                name="ingredient_unit"
+                id="ingredient_unit"
+                class="w-full border rounded"
+                value="{{ ingredient.unit }}"
+                required
+            > 
+            <div class="flex space-x-2">
+                <button 
+                    type="submit" 
+                    class="bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-600"
+                >
+                    Opslaan
+                </button>
+                <a 
+                    href="#" 
+                    onclick="deleteIngredient({{ ingredient.id }})" 
+                    class="text-red-500 hover:underline"
+                >
+                    Verwijder
+                </a>
+            </div>
+        </form>
+        {% endfor %}
+
+        <form action="/crud/create_ingredient/" method="post" class="grid grid-cols-5 gap-4 items-center py-2 border-b mt-4">
+            <input type="hidden" name="component_id" value="{{ component.id }}">
+            <input
+                type="text"
+                name="new_ingredient_name"
+                id="new_ingredient_name"
+                class="w-full border rounded"
+                placeholder="Nieuw ingredient"
+                required
+            >                
+            <input
+                type="text"
+                name="new_ingredient_amount"
+                id="new_ingredient_amount"
+                class="w-full border rounded"
+                placeholder="Hoeveelheid"
+                required
+            >   
+            <input
+                type="text"
+                name="new_ingredient_unit"
+                id="new_ingredient_unit"
+                class="w-full border rounded"
+                placeholder="Eenheid"
+                required
+            >                
+            <div>
+                <button 
+                    type="submit" 
+                    class="bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-600"
+                >
+                    Nieuw
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    function deleteIngredient(ingredientId) {
+        if (confirm("Are you sure you want to delete this ingredient?")) {
+            fetch(`/crud/delete_ingredient/${ingredientId}`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            })
+            .then(response => {
+                if (response.ok) {
+                    window.location.reload();  // Refresh the page to show the changes
+                } else {
+                    alert("Error deleting ingredient.");
+                }
+            })
+            .catch(error => {
+                console.error("Error:", error);
+                alert("An error occurred while deleting the ingredient.");
+            });
+        }
+    }
+</script>

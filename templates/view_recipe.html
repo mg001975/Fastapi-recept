@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block title %}View Recipe{% endblock %}
+
+{% block content %}
+<div class="max-w-4xl mx-auto bg-white p-6 rounded shadow mt-8">
+    <h1 class="text-3xl font-bold mb-4">{{ recipe.name }} </h1>
+    <div class="text-gray-600 text-sm mb-6">
+        <span>Category: {{ recipe.category or "N/A" }}</span> |
+        <span>Prep Time: {{ recipe.prep_time or "?" }} minutes</span> |
+        <span>Difficulty: {{ recipe.difficulty or "N/A" }}</span>
+    </div>
+    <p class="text-gray-800 mb-4" style="white-space: pre-line;">{{ recipe.description }}</p> 
+    <hr>
+
+    {% if recipe.components %}
+    <h2 class="text-2xl font-bold mt-6 mb-4">Components</h2>
+    <ul class="space-y-6">
+        {% for component in recipe.components %}
+        <li class="bg-gray-100 p-4 rounded shadow">
+            <h3 class="text-xl font-semibold">Component: {{ component.name }}</h3>
+            <p class="text-gray-700 mb-4">{{ component.description or "No description provided." }}</p>
+
+            {% if component.ingredients %}
+                <h5 class="text-md font-bold mt-4">Ingredients</h5>
+                <ul class="list-disc list-inside mt-2">
+                    {% for ingredient in component.ingredients %}
+                    <li>{{ ingredient.name }} - {{ ingredient.amount }} {{ ingredient.unit or "" }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+
+            {% if component.steps %}
+                <h4 class="text-lg font-bold mt-4">Steps</h4>
+                <ol class="list-disc list-inside mb-2">
+                    {% for step in component.steps %}
+                        <li>{{ step.order }} - {{ step.description }}</li>
+                    {% endfor %}
+                </ol>  
+            {% endif %}
+        </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p class="text-gray-600">This recipe has no components yet.</p>
+    {% endif %}
+</div>
+{% endblock %}
