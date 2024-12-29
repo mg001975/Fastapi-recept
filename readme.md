@@ -90,19 +90,19 @@ Example of a valid YAML structure:
       component_description: Hoofdeeg kneden, 7 bollen a 230 gram
       Steps:
         - step_description: deeg maken
-          Ingredients:
-            - ingredient_name: bloem
-              ingredient_amount: 1000
-              ingredient_unit: gram
-            - ingredient_name: water
-              ingredient_amount: 600
-              ingredient_unit: gram
-            - ingredient_name: gist
-              ingredient_amount: 3
-              ingredient_unit: gram
-            - ingredient_name: zout
-              ingredient_amount: 15
-              ingredient_unit: gram
+      Ingredients:
+        - ingredient_name: bloem
+          ingredient_amount: 1000
+          ingredient_unit: gram
+        - ingredient_name: water
+          ingredient_amount: 600
+          ingredient_unit: gram
+        - ingredient_name: gist
+          ingredient_amount: 3
+          ingredient_unit: gram
+        - ingredient_name: zout
+          ingredient_amount: 15
+          ingredient_unit: gram
 ```
 
 2. **Import Recipes**:
