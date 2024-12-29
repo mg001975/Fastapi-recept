@@ -2,10 +2,12 @@
     <!-- Steps Table -->
     <div class="mb-4">
         <h2 class="text-lg font-semibold">Stap:</h2>
-        <div class="grid grid-cols-5 gap-4 font-bold border-b pb-2">
-            <div></div>
+
+        <div class="grid grid-cols-3 gap-4 font-bold border-b pb-2">
+
             <div>Sort</div>
             <div>Beschrijving</div>
+            <div>Actie</div>
         </div>
 
         <!-- Existing Steps -->
@@ -13,7 +15,7 @@
         <form 
             action="/crud/edit_step/{{ step.id }}" 
             method="post" 
-            class="grid grid-cols-5 gap-4 items-center py-2 border-b"
+            class="grid grid-cols-3 gap-4 items-center py-2 border-b"
         >
             <!-- Hidden Component ID -->
             <input type="hidden" name="component_id" value="{{ component.id }}">
@@ -35,37 +37,42 @@
                 required
             >                
 
-            <!-- Actions -->
-            <div class="flex space-x-2">
-                <!-- Submit Edit Button -->
+            {% if step %}
+            <div class="flex justify-end space-x-4">
+                <button 
+                    type="button" 
+                    onclick="deleteStep({{ step.id }})"
+                    class="flex items-center justify-center w-10 h-10 bg-red-500 text-white rounded-full hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-300">
+                    
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+                {% endif %}
+
                 <button 
                     type="submit" 
-                    class="bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-600"
-                >
-                    Opslaan
+                    class="flex items-center justify-center w-10 h-10 bg-green-500 text-white rounded-full hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-300">
+                    <!-- Green Checkmark SVG -->
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                    </svg>
                 </button>
-                <!-- Delete Button -->
-                <a 
-                    href="#" 
-                    onclick="deleteStep({{ step.id }})" 
-                    class="text-red-500 hover:underline"
-                >
-                    Verwijder
-                </a>
-            </div>
-        </form>
+                </div>
+
+            </form>
         {% endfor %}
 
         <!-- Add New Step -->
-        <form action="/crud/create_step/" method="post" class="grid grid-cols-5 gap-4 items-center py-2 border-b mt-4">
+        <form action="/crud/create_step/" method="post" class="grid grid-cols-3 gap-4 items-center py-2 border-b mt-4">
             <!-- Hidden Component ID -->
             <input type="hidden" name="component_id" value="{{ component.id }}">
             <input
-                type="text"
+                type="integer"
                 name="new_order"
                 id="new_order"
                 class="w-full border rounded"
-                placeholder="Nieuwe stap"
+                placeholder="sortering"
                 required
             >        
             <!-- New Step Description -->
@@ -77,16 +84,17 @@
                 placeholder="Nieuwe stap"
                 required
             >                
-
-            <!-- Actions -->
-            <div>
-                <button 
-                    type="submit" 
-                    class="bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-600"
-                >
-                    Nieuw
-                </button>
+         <div class="flex justify-end space-x-4">
+                 <button 
+                type="submit" 
+                class="flex items-center justify-center w-10 h-10 bg-green-500 text-white rounded-full hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-300">
+                <!-- Green Checkmark SVG -->
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+            </button>
             </div>
+    
         </form>
     </div>
 </div>

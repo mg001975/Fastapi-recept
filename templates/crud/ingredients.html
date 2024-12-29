@@ -1,7 +1,7 @@
 <div class="ml-4 border-2 pl-4">
     <div class="mb-4">
         <h2 class="text-lg font-semibold">Ingredienten:</h2>
-        <div class="grid grid-cols-5 gap-4 font-bold border-b pb-2">
+        <div class="grid grid-cols-4 gap-4 font-bold border-b pb-2">
             <div>Ingredient</div>
             <div>Hoeveelheid</div>
             <div>Eenheid</div>
@@ -9,7 +9,7 @@
         </div>
 
         {% for ingredient in component.ingredients %}
-        <form action="/crud/edit_ingredient/{{ ingredient.id }}" method="post" class="grid grid-cols-5 gap-4 items-center py-2 border-b">
+        <form action="/crud/edit_ingredient/{{ ingredient.id }}" method="post" class="grid grid-cols-4 gap-4 items-center py-2 border-b">
             <input type="hidden" name="component_id" value="{{ component.id }}">
             <input
                 type="text"
@@ -35,25 +35,34 @@
                 value="{{ ingredient.unit }}"
                 required
             > 
-            <div class="flex space-x-2">
-                <button 
-                    type="submit" 
-                    class="bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-600"
-                >
-                    Opslaan
-                </button>
-                <a 
-                    href="#" 
-                    onclick="deleteIngredient({{ ingredient.id }})" 
-                    class="text-red-500 hover:underline"
-                >
-                    Verwijder
-                </a>
-            </div>
+
+          <div class="flex justify-end space-x-4">
+            <button 
+                type="button" 
+                onclick="deleteIngredient({{ ingredient.id }})"
+                class="flex items-center justify-center w-10 h-10 bg-red-500 text-white rounded-full hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-300">
+                
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+    
+
+            <button 
+                type="submit" 
+                class="flex items-center justify-center w-10 h-10 bg-green-500 text-white rounded-full hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-300">
+                <!-- Green Checkmark SVG -->
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+            </button>
+        </div>
+
+
         </form>
         {% endfor %}
 
-        <form action="/crud/create_ingredient/" method="post" class="grid grid-cols-5 gap-4 items-center py-2 border-b mt-4">
+        <form action="/crud/create_ingredient/" method="post" class="grid grid-cols-4 gap-4 items-center py-2 border-b mt-4">
             <input type="hidden" name="component_id" value="{{ component.id }}">
             <input
                 type="text"
@@ -79,13 +88,15 @@
                 placeholder="Eenheid"
                 required
             >                
-            <div>
-                <button 
-                    type="submit" 
-                    class="bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-600"
-                >
-                    Nieuw
-                </button>
+            <div class="flex justify-end space-x-4">
+                 <button 
+                type="submit" 
+                class="flex items-center justify-center w-10 h-10 bg-green-500 text-white rounded-full hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-300">
+                <!-- Green Checkmark SVG -->
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+            </button>
             </div>
         </form>
     </div>

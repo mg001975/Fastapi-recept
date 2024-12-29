@@ -13,7 +13,7 @@ def init_db():
     """
     Initialize the database by creating all tables.
     """
-    from .models import Recipe, RecipeComponent, Ingredient, Step
+    from database.models import Recipe, RecipeComponent, Ingredient, Step
 
     Base.metadata.create_all(bind=engine)
 

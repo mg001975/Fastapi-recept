@@ -5,12 +5,7 @@
                 <a href="/" class="text-white text-lg font-bold">Recepten</a>
                 <div class="hidden md:block">
                     <div class="ml-10 flex items-baseline space-x-4">
-                        <a href="/" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Home</a>
-                        <a href="/recipe/list" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Recepten</a>
-                        <a href="/crud/" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">CRUD</a>
-                        <a href="/admin" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Admin</a>      
-                        <a href="/docs" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Docs</a>
-                        <a href="/aboutme" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">About</a>
+                        {% include 'navlinks.html' %}
                     </div>
                 </div>
             </div>
@@ -29,12 +24,7 @@
     <!-- Mobile menu, show/hide based on menu state. -->
     <div class="md:hidden" id="mobile-menu">
         <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-            <a href="/" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Home</a>
-            <a href="/recipe/list" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Recepten</a>
-            <a href="/crud/" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">CRUD</a>
-            <a href="/admin" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Admin</a>      
-            <a href="/docs" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Docs</a>
-            <a href="/aboutme" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">About</a>   
+            {% include 'navlinks.html' %}
         </div>
     </div>
 </nav>

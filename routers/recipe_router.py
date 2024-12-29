@@ -17,7 +17,6 @@ templates = Jinja2Templates(directory="templates")
 # --------------------------------------------------------------
 @router.get("/list")
 async def list_recipes(request: Request, db: Session = Depends(get_db)):
-
     recipes = db.query(Recipe).all()
 
     return templates.TemplateResponse(
@@ -30,7 +29,6 @@ async def list_recipes(request: Request, db: Session = Depends(get_db)):
 # --------------------------------------------------------------
 @router.get("/{recipe_id:int}", response_class=HTMLResponse)
 async def view_recipe(recipe_id: int, request: Request, db: Session = Depends(get_db)):
-
     recipe = db.query(Recipe).filter(Recipe.id == recipe_id).first()
     if not recipe:
         return {"error": "Recipe not found"}

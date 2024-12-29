@@ -7,7 +7,7 @@
         {% endif %}
     </h1>
 </div>
-<hr>
+
 <form 
         action="{% if recipe.id %}/crud/edit_recipe/{{ recipe.id }}{% else %}/crud/create_recipe{% endif %}" 
         method="post" 
@@ -35,17 +35,18 @@
                 required>{{ recipe.description or '' }}</textarea>
         </div>
 
-        <!-- Category -->
-        <div>
-            <label for="category" class="block font-bold">Category</label>
-            <input 
-                type="text" 
-                name="category" 
-                id="category" 
-                value="{{ recipe.category or '' }}" 
-                class="w-full border p-2 rounded">
-        </div>
 
+        <select 
+            name="category" 
+            id="category" 
+            class="w-full border p-2 rounded">
+            <option value={{ recipe.category }} >{{ recipe.category or '' }}</option>
+            <option value="Pizza">Pizza</option>
+            <option value="Deeg">Deeg</Deeg>
+            <option value="Soep">Soep</option>
+            <option value="Hoofdgerecht">Hoofdgerecht</option>
+            <option value="Snack">Snack</option>
+        </select>
         <!-- Prep Time -->
         <div>
             <label for="prep_time" class="block font-bold">Prep Time (minutes)</label>
@@ -69,21 +70,27 @@
                 class="w-full border p-2 rounded">
         </div>
 
-        <button
-        class="text-red-600 hover:text-red-800 text-sm font-medium"
-        onclick="deleteRecipe({{ recipe.id }})">
-        Delete
-    </button>
-
-        <!-- Submit Button -->
-        <button 
-            type="submit" 
-            class="bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-600">
-            {% if recipe.id %} Save Changes {% else %} Create Recipe {% endif %}
-        </button>
+        <div class="flex justify-end space-x-4">
+            <button 
+                type="button" 
+                onclick="deleteRecipe({{ recipe.id }})"
+                class="flex items-center justify-center w-10 h-10 bg-red-500 text-white rounded-full hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-300">
+                
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+            <button 
+                type="submit" 
+                class="flex items-center justify-center w-10 h-10 bg-green-500 text-white rounded-full hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-300">
+                <!-- Green Checkmark SVG -->
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+            </button>
+        </div>
     </form>
 
-<hr>
 
 <script>
     async function deleteRecipe(recipeId) {

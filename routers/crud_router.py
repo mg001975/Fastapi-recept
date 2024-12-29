@@ -3,10 +3,9 @@ from sqlalchemy.orm import Session
 from database.database import get_db
 from database.models import Recipe, RecipeComponent, Ingredient, Step
 
-from fastapi import FastAPI, Request, Path
+from fastapi import Request, Path
 from fastapi.templating import Jinja2Templates
 from fastapi.responses import HTMLResponse, RedirectResponse
-from typing import Optional, List
 import logging
 
 logger = logging.getLogger(__name__)
@@ -25,7 +24,6 @@ templates = Jinja2Templates(directory="templates")
 # --------------------------------------------------------------
 @router.get("/")
 async def list_recipes(request: Request, db: Session = Depends(get_db)):
-
     # Query all recipes
     recipes = db.query(Recipe).all()
 
@@ -144,7 +142,6 @@ async def edit_recipe(
 # Delete recipe
 @router.delete("/delete_recipe/{recipe_id}")
 async def delete_recipe(recipe_id: int, db: Session = Depends(get_db)):
-
     recipe = db.query(Recipe).filter(Recipe.id == recipe_id).first()
 
     if not recipe:
@@ -284,7 +281,6 @@ async def create_ingredient(
     component_id: int = Form(...),
     db: Session = Depends(get_db),
 ):
-
     ingredient = Ingredient(
         name=new_ingredient_name,
         amount=new_ingredient_amount,
