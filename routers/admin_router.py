@@ -1,14 +1,19 @@
 from fastapi import APIRouter, File, UploadFile, Form, Depends, Request, HTTPException
 from sqlalchemy.orm import Session
 from database.database import get_db
-from database.models import Recipe, RecipeComponent, Step, Ingredient
+
+# from database.models import Recipe, RecipeComponent, Step, Ingredient
 import yaml
-from io import StringIO
+
+# from io import StringIO
 from fastapi.templating import Jinja2Templates
-from fastapi.responses import StreamingResponse
+
+# from fastapi.responses import StreamingResponse
 from fastapi.responses import HTMLResponse, RedirectResponse
 from utils.import_function import insert_recipes_into_db
 from utils.export_function import recipes_to_yaml
+
+import os
 
 router = APIRouter()
 templates = Jinja2Templates(directory="templates")
@@ -53,7 +58,6 @@ async def import_preview(request: Request, file: UploadFile = File(...)):
 
 @router.post("/import_data")
 async def import_data(yaml_data: str = Form(...), db: Session = Depends(get_db)):
-
     try:
         data = yaml.safe_load(yaml_data)
         recipes = data.get("Recipes", [])
@@ -63,7 +67,7 @@ async def import_data(yaml_data: str = Form(...), db: Session = Depends(get_db))
             raise ValueError("No 'recipes' found in the provided YAML data.")
         insert_recipes_into_db(recipes, db)
 
-        return RedirectResponse(url=f"/", status_code=303)
+        return RedirectResponse(url="/", status_code=303)
 
     except Exception as e:
         raise HTTPException(status_code=400, detail=f"Failed to import data: {e}")
@@ -75,16 +79,14 @@ async def import_data(yaml_data: str = Form(...), db: Session = Depends(get_db))
 @router.get("/export_recipes")
 async def export_recipes(db: Session = Depends(get_db)):
     # Query all recipes from the database
-
     yaml_data = recipes_to_yaml(db)
 
-    buffer = StringIO()
-    buffer.write(yaml_data)
-    buffer.seek(0)
+    # Define the file path in the root directory
+    file_path = os.path.join(os.getcwd(), "recipes.yaml")
 
-    # Return the YAML data as a downloadable file
-    return StreamingResponse(
-        buffer,
-        media_type="application/x-yaml",
-        headers={"Content-Disposition": "attachment; filename=recipes.yaml"},
-    )
+    # Write the YAML data to the file
+    with open(file_path, "w") as file:
+        file.write(yaml_data)
+
+    # Return a success message
+    return {"message": f"Recipes exported to {file_path}"}

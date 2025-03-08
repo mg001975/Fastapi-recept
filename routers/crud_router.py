@@ -201,7 +201,9 @@ async def edit_component(
 
 @router.post("/delete_component/{component_id}")
 async def delete_component(component_id: int, db: Session = Depends(get_db)):
-    component = db.query(RecipeComponent()).filter(component.id == component_id).first()
+    component = (
+        db.query(RecipeComponent()).filter(RecipeComponent.id == component_id).first()
+    )
     if not component:
         raise HTTPException(status_code=404, detail="Step not found")
     db.delete(component)

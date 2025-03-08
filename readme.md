@@ -104,16 +104,9 @@ Example of a valid YAML structure:
           ingredient_amount: 15
           ingredient_unit: gram
 ```
+## Exporting Recipes from YAML
 
-2. **Import Recipes**:
-
-Use the `importer/importer.py` script to import your recipes into the database. This script parses the YAML files and inserts the data into the SQLite database.
-
-```bash
-python importer/importer.py
-```
-
-This will read all YAML files from the `imports` folder and insert them into the recipes.db database.
+Backup youre recipes to a yaml file.
 
 3. **Check the Database**:
 

@@ -1,19 +1,242 @@
 Recipes:
-- name: test
-  category: test
-  description: tstff
-  prep_time: 1
-  difficulty: '1'
+- name: Recept 60%
+  category: Pizza
+  description: hoofddeeg directe methode, 12 uur in koelkast
+  prep_time: 15
+  difficulty: easy
   RecipeComponent:
-  - component_name: Component test
-    component_description: de
+  - component_name: Hoofddeeg
+    component_description: Hoofdeeg kneden, 7 bollen a 230 gram
     Ingredients:
-    - ingredient_name: gg
+    - ingredient_name: bloem
+      ingredient_amount: '1000'
+      ingredient_unit: gram
+    - ingredient_name: water
+      ingredient_amount: '600'
+      ingredient_unit: gram
+    - ingredient_name: gist
+      ingredient_amount: '3'
+      ingredient_unit: gram
+    - ingredient_name: zout
+      ingredient_amount: '15'
+      ingredient_unit: gram
+    - ingredient_name: test
       ingredient_amount: '1'
       ingredient_unit: aa
-    - ingredient_name: aa
-      ingredient_amount: '1'
-      ingredient_unit: gra
     Steps:
-    - step_description: step 1 test
-    - step_description: test 2 step
+    - step_order: 1
+      step_description: deeg maken
+    - step_order: 2
+      step_description: ' 12 uur in koelkast'
+  - component_name: Saus
+    component_description: Saus
+    Ingredients:
+    - ingredient_name: knoflook
+      ingredient_amount: '1'
+      ingredient_unit: teen
+    - ingredient_name: oregano
+      ingredient_amount: '1'
+      ingredient_unit: theelepel
+    - ingredient_name: zout
+      ingredient_amount: '1'
+      ingredient_unit: theelepel
+    Steps:
+    - step_order: 1
+      step_description: 30 minuten koken
+- name: Kaufland voor en hoofddeeg
+  category: Pizza
+  description: hoofddeeg directe methode, 12 uur in koelkast
+  prep_time: 15
+  difficulty: easy
+  RecipeComponent:
+  - component_name: Voordeeg
+    component_description: Hoofdeeg kneden, 7 bollen a 230 gram
+    Ingredients:
+    - ingredient_name: bloem
+      ingredient_amount: '200'
+      ingredient_unit: gram
+    - ingredient_name: water
+      ingredient_amount: '200'
+      ingredient_unit: gram
+    - ingredient_name: gist
+      ingredient_amount: '2'
+      ingredient_unit: gram
+    - ingredient_name: Unnamed Ingredient
+      ingredient_amount: ''
+      ingredient_unit: ''
+    - ingredient_name: Unnamed Ingredient
+      ingredient_amount: ''
+      ingredient_unit: ''
+    Steps:
+    - step_order: null
+      step_description: voordeeg kneden, let op zout als laatste toevoegen
+  - component_name: Hoofddeeg
+    component_description: Maken Hoofdeeg
+    Ingredients:
+    - ingredient_name: bloem
+      ingredient_amount: '800'
+      ingredient_unit: gram
+    - ingredient_name: water
+      ingredient_amount: '420'
+      ingredient_unit: gram
+    - ingredient_name: gist
+      ingredient_amount: '1'
+      ingredient_unit: gram
+    - ingredient_name: zout
+      ingredient_amount: '15'
+      ingredient_unit: gram
+    - ingredient_name: Unnamed Ingredient
+      ingredient_amount: ''
+      ingredient_unit: ''
+    - ingredient_name: Unnamed Ingredient
+      ingredient_amount: ''
+      ingredient_unit: ''
+    Steps:
+    - step_order: null
+      step_description: deeg maken
+  - component_name: Saus
+    component_description: Saus
+    Ingredients:
+    - ingredient_name: knoflook
+      ingredient_amount: '1'
+      ingredient_unit: teen
+    - ingredient_name: oregano
+      ingredient_amount: '1'
+      ingredient_unit: theelepel
+    - ingredient_name: zout
+      ingredient_amount: '1'
+      ingredient_unit: theelepel
+    Steps:
+    - step_order: null
+      step_description: 30 minuten koken
+- name: Pizza kaufland bloem directe methode
+  category: Pizza
+  description: "Voordeeg maken en 12 uur in koelkast\r\n\r\nHoofdeeg samenvoegen \r\
+    \nbollen maken 4 uur in koelkast 6x 270 gram\r\n2 uur uit koelkast"
+  prep_time: 12
+  difficulty: easy
+  RecipeComponent:
+  - component_name: Deeg maken
+    component_description: "kneden\r\n4 uur rusten\r\n\r\nbollen maken  7  x 230 gram\r\
+      \n\r\nkoelkast tot 9 uur \r\n\r\nbuiten koelkast rijzen en opnieuw opbollen"
+    Ingredients:
+    - ingredient_name: bloem
+      ingredient_amount: '1'
+      ingredient_unit: kg
+    - ingredient_name: water
+      ingredient_amount: '600'
+      ingredient_unit: gram
+    - ingredient_name: gist
+      ingredient_amount: '3'
+      ingredient_unit: gram
+    - ingredient_name: zout
+      ingredient_amount: '15'
+      ingredient_unit: gram
+    Steps:
+    - step_order: null
+      step_description: 10 minuten kneden
+- name: 04-10-2024 Pizza voor en hoofddeeg
+  category: Pizza
+  description: Voor deeg 12 uur koelkast, hoofddeeg
+  prep_time: 15
+  difficulty: easy
+  RecipeComponent:
+  - component_name: Voordeeg
+    component_description: Hoofdeeg kneden, 6 bollen a 270 gram
+    Ingredients:
+    - ingredient_name: bloem
+      ingredient_amount: '200'
+      ingredient_unit: gram
+    - ingredient_name: water
+      ingredient_amount: '200'
+      ingredient_unit: gram
+    - ingredient_name: gist
+      ingredient_amount: '2'
+      ingredient_unit: gram
+    - ingredient_name: Unnamed Ingredient
+      ingredient_amount: ''
+      ingredient_unit: ''
+    - ingredient_name: Unnamed Ingredient
+      ingredient_amount: ''
+      ingredient_unit: ''
+    Steps:
+    - step_order: null
+      step_description: voordeeg kneden, let op zout als laatste toevoegen
+  - component_name: Hoofddeeg
+    component_description: Maken Hoofdeeg
+    Ingredients:
+    - ingredient_name: bloem
+      ingredient_amount: '800'
+      ingredient_unit: gram
+    - ingredient_name: water
+      ingredient_amount: '400'
+      ingredient_unit: gram
+    - ingredient_name: gist
+      ingredient_amount: '1'
+      ingredient_unit: gram
+    - ingredient_name: zout
+      ingredient_amount: '15'
+      ingredient_unit: gram
+    - ingredient_name: Unnamed Ingredient
+      ingredient_amount: ''
+      ingredient_unit: ''
+    - ingredient_name: Unnamed Ingredient
+      ingredient_amount: ''
+      ingredient_unit: ''
+    Steps:
+    - step_order: null
+      step_description: deeg maken
+  - component_name: Saus
+    component_description: Saus
+    Ingredients:
+    - ingredient_name: knoflook
+      ingredient_amount: '1'
+      ingredient_unit: teen
+    - ingredient_name: oregano
+      ingredient_amount: '1'
+      ingredient_unit: theelepel
+    - ingredient_name: zout
+      ingredient_amount: '1'
+      ingredient_unit: theelepel
+    Steps:
+    - step_order: null
+      step_description: 30 minuten koken
+- name: Pizza saus
+  category: Pizza
+  description: https://www.eefkooktzo.nl/pizzasaus-maken/
+  prep_time: 30
+  difficulty: makkelijk
+  RecipeComponent:
+  - component_name: saus
+    component_description: af
+    Ingredients:
+    - ingredient_name: Ui
+      ingredient_amount: '1'
+      ingredient_unit: aantal
+    - ingredient_name: Knoflook
+      ingredient_amount: '2'
+      ingredient_unit: tenen
+    - ingredient_name: Suiker
+      ingredient_amount: '1'
+      ingredient_unit: eetlepel halve
+    - ingredient_name: Oregano
+      ingredient_amount: '2'
+      ingredient_unit: theelepel
+    - ingredient_name: Bascilicum
+      ingredient_amount: '2'
+      ingredient_unit: theelepel
+    - ingredient_name: Tijm
+      ingredient_amount: '1'
+      ingredient_unit: theelepel
+    - ingredient_name: Tomatensaus
+      ingredient_amount: '1'
+      ingredient_unit: blik
+    - ingredient_name: Olijfolie, peper en zout
+      ingredient_amount: '1'
+      ingredient_unit: aantal
+    Steps:
+    - step_order: 1
+      step_description: Snipper de ui en snij de knoflook fijn.
+    - step_order: 1
+      step_description: Verhit een beetje olie in een koekenpan en fruit de ui en
+        de knoflook tot deze glazig zijn

@@ -9,57 +9,57 @@
         </div>
 
         {% for ingredient in component.ingredients %}
-        <form action="/crud/edit_ingredient/{{ ingredient.id }}" method="post" class="grid grid-cols-4 gap-4 items-center py-2 border-b">
-            <input type="hidden" name="component_id" value="{{ component.id }}">
-            <input
-                type="text"
-                name="ingredient_name"
-                id="ingredient_name"
-                class="w-full border rounded"
-                value="{{ ingredient.name }}"
-                required
-            >                
-            <input
-                type="text"
-                name="ingredient_amount"
-                id="ingredient_amount"
-                class="w-full border rounded"
-                value="{{ ingredient.amount }}"
-                required
-            >   
-            <input
-                type="text"
-                name="ingredient_unit"
-                id="ingredient_unit"
-                class="w-full border rounded"
-                value="{{ ingredient.unit }}"
-                required
-            > 
+            <form action="/crud/edit_ingredient/{{ ingredient.id }}" method="post" class="grid grid-cols-4 gap-4 items-center py-2 border-b">
+                <input type="hidden" name="component_id" value="{{ component.id }}">
+                <input
+                    type="text"
+                    name="ingredient_name"
+                    id="ingredient_name"
+                    class="w-full border rounded"
+                    value="{{ ingredient.name }}"
+                    required
+                >                
+                <input
+                    type="text"
+                    name="ingredient_amount"
+                    id="ingredient_amount"
+                    class="w-full border rounded"
+                    value="{{ ingredient.amount }}"
+                    required
+                >   
+                <input
+                    type="text"
+                    name="ingredient_unit"
+                    id="ingredient_unit"
+                    class="w-full border rounded"
+                    value="{{ ingredient.unit }}"
+                    required
+                > 
 
-          <div class="flex justify-end space-x-4">
-            <button 
-                type="button" 
-                onclick="deleteIngredient({{ ingredient.id }})"
-                class="flex items-center justify-center w-10 h-10 bg-red-500 text-white rounded-full hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-300">
-                
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-                </svg>
-            </button>
-    
+                <div class="flex justify-end space-x-4">
+                    <button 
+                        type="button" 
+                        onclick="deleteIngredient({{ ingredient.id }})"
+                        class="flex items-center justify-center w-10 h-10 bg-red-500 text-white rounded-full hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-300">
+                        
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+            
 
-            <button 
-                type="submit" 
-                class="flex items-center justify-center w-10 h-10 bg-green-500 text-white rounded-full hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-300">
-                <!-- Green Checkmark SVG -->
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
-                </svg>
-            </button>
-        </div>
+                    <button 
+                        type="submit" 
+                        class="flex items-center justify-center w-10 h-10 bg-green-500 text-white rounded-full hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-300">
+                        <!-- Green Checkmark SVG -->
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                        </svg>
+                    </button>
+                </div>
 
 
-        </form>
+            </form>
         {% endfor %}
 
         <form action="/crud/create_ingredient/" method="post" class="grid grid-cols-4 gap-4 items-center py-2 border-b mt-4">
