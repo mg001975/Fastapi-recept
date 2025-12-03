@@ -12,10 +12,16 @@ from fastapi.templating import Jinja2Templates
 from fastapi.responses import HTMLResponse, RedirectResponse
 from utils.import_function import insert_recipes_into_db
 from utils.export_function import recipes_to_yaml
-
+from auth.jwt_utils import get_current_user
 import os
 
-router = APIRouter()
+# router = APIRouter()
+router = APIRouter(
+    prefix="",
+    dependencies=[Depends(get_current_user)],  # ← LOCKS DOWN every endpoint
+    responses={401: {"description": "Not authenticated"}},
+)
+
 templates = Jinja2Templates(directory="templates")
 temp_data = {}
 

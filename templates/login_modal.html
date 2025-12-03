@@ -1,0 +1,111 @@
+
+<!-- NAVBAR -->
+<nav class="bg-blue-600 text-white py-4 shadow-md">
+    <!-- Right Side -->
+    <div class="flex items-center space-x-4">
+      <!-- Show when NOT logged in -->
+      <button id="login-button" class="text-white hover:bg-blue-700 px-3 py-2 rounded-md text-sm font-medium">
+        Login
+      </button>
+
+      <!-- Show when logged in -->
+      <div id="user-info" class="hidden items-center space-x-2">
+        <span id="username-display" class="text-white"></span>
+        <button id="logout-button" class="text-white hover:bg-red-700 px-3 py-2 rounded-md text-sm font-medium">
+          Logout
+        </button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- LOGIN MODAL -->
+<div id="login-modal" class="hidden fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center z-50">
+  <div class="bg-white rounded-lg shadow-lg p-6 w-96">
+    <h2 class="text-lg font-bold mb-4">Login</h2>
+    <form id="login-form" class="space-y-4">
+      <div>
+        <label for="username" class="block text-sm font-medium">Username</label>
+        <input type="text" name="username" id="username" required class="w-full border p-2 rounded">
+      </div>
+      <div>
+        <label for="password" class="block text-sm font-medium">Password</label>
+        <input type="password" name="password" id="password" required class="w-full border p-2 rounded">
+      </div>
+      <div class="flex justify-end space-x-4">
+        <button type="button" id="close-login-modal" class="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600">
+          Cancel
+        </button>
+        <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+          Login
+        </button>
+      </div>
+    </form>
+  </div>
+
+
+<script>
+  const loginButton = document.getElementById('login-button');
+  const logoutButton = document.getElementById('logout-button');
+  const loginModal = document.getElementById('login-modal');
+  const closeLoginModal = document.getElementById('close-login-modal');
+  const loginForm = document.getElementById('login-form');
+  const userInfo = document.getElementById('user-info');
+  const usernameDisplay = document.getElementById('username-display');
+
+  // Show login modal
+  loginButton.addEventListener('click', () => loginModal.classList.remove('hidden'));
+
+  // Hide login modal
+  closeLoginModal.addEventListener('click', () => loginModal.classList.add('hidden'));
+
+  // Login form submission
+  loginForm.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    const formData = new FormData(loginForm);
+    const response = await fetch('/auth/login', {
+      method: 'POST',
+      body: formData
+    });
+
+    if (response.ok) {
+      const data = await response.json();
+      const token = data.access_token;
+      localStorage.setItem('access_token', token);
+
+      loginModal.classList.add('hidden');
+      loginButton.classList.add('hidden');
+      userInfo.classList.remove('hidden');
+
+      const payload = JSON.parse(atob(token.split('.')[1]));
+      usernameDisplay.textContent = `Welcome, ${payload.sub}!`;
+    } else {
+      alert('Login failed.');
+    }
+  });
+
+  // Logout
+  logoutButton.addEventListener('click', async () => {
+    await fetch('/auth/logout', { method: 'POST' });
+    localStorage.removeItem('access_token');
+    location.reload();
+  });
+
+  // On page load — check login
+  document.addEventListener('DOMContentLoaded', () => {
+    const token = localStorage.getItem('access_token');
+    if (token) {
+      try {
+        const payload = JSON.parse(atob(token.split('.')[1]));
+        usernameDisplay.textContent = `Welcome, ${payload.sub}!`;
+        loginButton.classList.add('hidden');
+        userInfo.classList.remove('hidden');
+      } catch (e) {
+        console.warn('Invalid token');
+      }
+    }
+  });
+</script>
+
+</body>
+</html>

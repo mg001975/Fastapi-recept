@@ -1,19 +1,38 @@
 from sqlalchemy import Column, Integer, String, ForeignKey, Text, Float
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
+from uuid import UUID
+from database.database import Base  # Import Base from database.database
+from pydantic import BaseModel
 
-# from database.database import Base  # Import Base from database.database
+# from pydantic import BaseModel, Field
+
+# Base = declarative_base()
 
 
-from pydantic import BaseModel, Field
+class Token(BaseModel):
+    access_token: str
+    token_type: str
 
-Base = declarative_base()
 
-# ! to update
-# class Category(Base):
-#     __tablename__ = "categories"
-#     id = Column(Integer, primary_key=True)
-#     name = Column(String, nullable=False, unique=True)
+class TokenData(BaseModel):
+    user_id: str | None = None
+
+    def get_uuid(self) -> UUID | None:
+        if self.user_id:
+            return UUID(self.user_id)
+        return None
+
+
+# --------------------------------------------------------------
+# User model
+# --------------------------------------------------------------
+class User(Base):
+    __tablename__ = "users"
+
+    id = Column(Integer, primary_key=True, index=True)
+    username = Column(String, unique=True, index=True, nullable=False)
+    hashed_password = Column(String, nullable=False)
 
 
 class Recipe(Base):

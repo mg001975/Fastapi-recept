@@ -10,12 +10,12 @@ Base = declarative_base()
 
 
 def init_db():
-    """
-    Initialize the database by creating all tables.
-    """
-    from database.models import Recipe, RecipeComponent, Ingredient, Step
+    from database.models import Recipe, RecipeComponent, Ingredient, Step, User
 
+    print("Registering User model:", User.__tablename__)
+    print("Creating tables...")
     Base.metadata.create_all(bind=engine)
+    print("Tables created successfully.")
 
 
 def get_db():

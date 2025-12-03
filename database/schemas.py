@@ -2,6 +2,31 @@ from pydantic import BaseModel
 from typing import List, Optional
 
 
+# --------------------------------------------------------------
+# User login
+# --------------------------------------------------------------
+class User(BaseModel):
+    id: int
+    username: str
+    hashed_password: str
+
+    class Config:
+        orm_mode = True
+
+
+class UserLogin(BaseModel):
+    username: str
+    password: str
+
+
+class Token(BaseModel):
+    access_token: str
+    token_type: str
+
+
+# --------------------------------------------------------------
+#
+# --------------------------------------------------------------
 class StepResponse(BaseModel):
     id: int
     order: int

@@ -240,3 +240,150 @@ Recipes:
     - step_order: 1
       step_description: Verhit een beetje olie in een koekenpan en fruit de ui en
         de knoflook tot deze glazig zijn
+- name: Recept 60% Romana
+  category: Pizza
+  description: hoofddeeg directe methode, 12-24 uur in koelkast
+  prep_time: 15
+  difficulty: easy
+  RecipeComponent:
+  - component_name: Hoofddeeg
+    component_description: Hoofdeeg kneden, 7 bollen a 230 gram
+    Ingredients:
+    - ingredient_name: bloem
+      ingredient_amount: '1000'
+      ingredient_unit: gram
+    - ingredient_name: water
+      ingredient_amount: '680'
+      ingredient_unit: ml
+    - ingredient_name: gist
+      ingredient_amount: '2'
+      ingredient_unit: gram
+    - ingredient_name: zout
+      ingredient_amount: '30'
+      ingredient_unit: gram
+    - ingredient_name: olie
+      ingredient_amount: '15'
+      ingredient_unit: ml
+    Steps:
+    - step_order: 1
+      step_description: deeg maken, start met water en gist, dan toevoegen meel 10
+        minuten kneden
+    - step_order: 2
+      step_description: op het laatst zout en olie
+    - step_order: 3
+      step_description: 20 minuten rusten grote bal
+    - step_order: 4
+      step_description: No Description
+    - step_order: 5
+      step_description: No Description
+    - step_order: 6
+      step_description: 24 uur rusten in koelkast
+  - component_name: saus
+    component_description: af
+    Ingredients:
+    - ingredient_name: Ui
+      ingredient_amount: '1'
+      ingredient_unit: aantal
+    - ingredient_name: Knoflook
+      ingredient_amount: '2'
+      ingredient_unit: tenen
+    - ingredient_name: Suiker
+      ingredient_amount: '1'
+      ingredient_unit: eetlepel halve
+    - ingredient_name: Oregano
+      ingredient_amount: '2'
+      ingredient_unit: theelepel
+    - ingredient_name: Bascilicum
+      ingredient_amount: '2'
+      ingredient_unit: theelepel
+    - ingredient_name: Tijm
+      ingredient_amount: '1'
+      ingredient_unit: theelepel
+    - ingredient_name: Tomatensaus
+      ingredient_amount: '1'
+      ingredient_unit: blik
+    - ingredient_name: Olijfolie, peper en zout
+      ingredient_amount: '1'
+      ingredient_unit: aantal
+    Steps:
+    - step_order: 1
+      step_description: Snipper de ui en snij de knoflook fijn.
+    - step_order: 1
+      step_description: Verhit een beetje olie in een koekenpan en fruit de ui en
+        de knoflook tot deze glazig zijn
+- name: Recept 62%
+  category: ''
+  description: Pizzadeeg 62%
+  prep_time: 15
+  difficulty: easy
+  RecipeComponent:
+  - component_name: Pizzadeed
+    component_description: Hoofddeeg
+    Ingredients:
+    - ingredient_name: Bloem
+      ingredient_amount: '1000'
+      ingredient_unit: kg
+    - ingredient_name: Water
+      ingredient_amount: '630'
+      ingredient_unit: gram
+    - ingredient_name: Zout
+      ingredient_amount: '15'
+      ingredient_unit: gram
+    - ingredient_name: Gist
+      ingredient_amount: '4'
+      ingredient_unit: gram
+    Steps:
+    - step_order: 1
+      step_description: Deeg maken
+    - step_order: 2
+      step_description: Kneden
+    - step_order: 3
+      step_description: bollen maken
+    - step_order: 4
+      step_description: Rusten koelkast 12 uur
+    - step_order: 5
+      step_description: Uit koelkast op kamertemperatuur laten komen
+- name: Hoofddeeg 60 direct
+  category: Pizza
+  description: hoofddeeg directe methode
+  prep_time: 30
+  difficulty: ea
+  RecipeComponent:
+  - component_name: Hoofddeeg
+    component_description: hoofddeeg
+    Ingredients:
+    - ingredient_name: Bloem
+      ingredient_amount: '500'
+      ingredient_unit: gram
+    - ingredient_name: Water
+      ingredient_amount: '300'
+      ingredient_unit: gram
+    - ingredient_name: gist
+      ingredient_amount: '2'
+      ingredient_unit: gram
+    Steps:
+    - step_order: 1
+      step_description: Deeg mixen
+    - step_order: 2
+      step_description: Deeg kneden 10 minuten
+    - step_order: 3
+      step_description: Deeg rusten 30 minuten
+    - step_order: 4
+      step_description: Deeg opbollen 4 bollen a
+    - step_order: 5
+      step_description: 'Koelkast 20:00 - '
+- name: Deeg 2 stappen 60
+  category: Deeg
+  description: 'Deeg 2 stappen '
+  prep_time: 15
+  difficulty: easy
+  RecipeComponent:
+  - component_name: Voordeeg maken
+    component_description: Voordeeg maken en in koelkast laten rusten 20:00 - 8:00
+      (12 uur)
+    Ingredients: []
+    Steps: []
+  - component_name: Hoofddeeg maken
+    component_description: hoofddeeg
+    Ingredients: []
+    Steps: []

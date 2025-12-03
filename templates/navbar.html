@@ -1,41 +1,61 @@
 <nav class="bg-blue-600 text-white py-4 shadow-md">
-    <div class="bg-blue-600 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex items-center justify-between h-16">
-            <div class="flex items-center">
-                <a href="/" class="text-white text-lg font-bold">Recepten</a>
-                <div class="hidden md:block">
-                    <div class="ml-10 flex items-baseline space-x-4">
-                        {% include 'navlinks.html' %}
-                    </div>
-                </div>
-            </div>
-            <div class="-mr-2 flex md:hidden">
-                <button type="button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white" aria-controls="mobile-menu" aria-expanded="false">
-                    <span class="sr-only">Open main menu</span>
-                    <!-- Icon for the menu -->
-                    <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
-                    </svg>
-                </button>
-            </div>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16">
+      <div class="flex items-center">
+        <a href="/" class="text-white text-lg font-bold">Recepten</a>
+        <div class="hidden md:block ml-10">
+          <div class="flex items-baseline space-x-4">
+            {% include 'navlinks.html' %}             
+          </div>
         </div>
-    </div>
+      </div>
 
-    <!-- Mobile menu, show/hide based on menu state. -->
-    <div class="md:hidden" id="mobile-menu">
-        <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-            {% include 'navlinks.html' %}
-        </div>
+      <!-- NAV RIGHT SIDE -->
+      <div class="flex items-center space-x-4">
+        <!-- visible when NOT logged in -->
+       {% include "login_modal.html" %}
+      </div>
     </div>
+  </div>
+
+  <!-- Mobile menu -->
+  <div class="md:hidden" id="mobile-menu">
+    <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+      {% include 'navlinks.html' %}
+    </div>
+  </div>
 </nav>
+
+<!-- LOGIN MODAL (no more #user-info here!) -->
+<div
+  id="login-modal"
+  class="hidden fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center z-50"
+>
+  <div class="bg-white rounded-lg shadow-lg p-6 w-96">
+    <h2 class="text-lg font-bold mb-4">Login</h2>
+    <form id="login-form" class="space-y-4">
+      <div>
+        <label for="username" class="block text-sm font-medium text-gray-700">Username</label>
+        <input type="text" name="username" id="username" class="w-full border border-gray-300 p-2 rounded" required>
+      </div>
+      <div>
+        <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+        <input type="password" name="password" id="password" class="w-full border border-gray-300 p-2 rounded" required>
+      </div>
+      <div class="flex justify-end space-x-4">
+        <button id="close-login-modal" type="button" class="px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600">
+          Cancel
+        </button>
+        <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
+          Login
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
 
 
 
 <script>
-    const menuButton = document.querySelector('[aria-controls="mobile-menu"]');
-    const mobileMenu = document.getElementById('mobile-menu');
-
-    menuButton.addEventListener('click', () => {
-        mobileMenu.classList.toggle('hidden');
-    });
+ 
 </script>

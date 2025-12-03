@@ -20,6 +20,7 @@ app.include_router(main_router, prefix="")
 # Database initialization on startup
 @app.on_event("startup")
 def startup():
+    print("Initializing database...")
     init_db()
 
 
