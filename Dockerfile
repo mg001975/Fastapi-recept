@@ -1,13 +1,17 @@
 FROM python:3.11-slim
 
-ENV UV_SYSTEM_PYTHON=1
-WORKDIR /app
 
 COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
+
+# Change the working directory to the `app` directory
+WORKDIR /app
+
 # Install pip and uv system-wide
-RUN pip install --no-cache-dir --upgrade pip \
-    && pip install --no-cache-dir uv \
-    && ln -s /root/.local/bin/uv /usr/local/bin/uv  # maak uv system-wide beschikbaar
+# Install dependencies
+RUN --mount=type=cache,target=/root/.cache/uv \
+    --mount=type=bind,source=uv.lock,target=uv.lock \
+    --mount=type=bind,source=pyproject.toml,target=pyproject.toml \
+    uv sync --locked --no-install-project
 
 COPY . .
 
