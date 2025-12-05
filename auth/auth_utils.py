@@ -11,4 +11,6 @@ def hash_password(password: str) -> str:
 
 # Function to verify the hashed password
 def verify_password(plain_password: str, hashed_password: str) -> bool:
+    print(hashed_password)
+    print(plain_password)
     return pwd_context.verify(plain_password, hashed_password)
