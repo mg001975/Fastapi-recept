@@ -3,6 +3,7 @@ FROM python:3.11-slim
 ENV UV_SYSTEM_PYTHON=1
 WORKDIR /app
 
+COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
 # Install pip and uv system-wide
 RUN pip install --no-cache-dir --upgrade pip \
     && pip install --no-cache-dir uv \
