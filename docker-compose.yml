@@ -1,15 +1,29 @@
+# version: '3.8'
+
+# services:
+#   app:
+#     build: .
+#     container_name: recept
+#     command: uvicorn app:app --host 0.0.0.0 --port 80 --reload
+#     ports:
+#       - 8083:80
+#     volumes:
+#       - .:/app
+#     restart: always 
+# # networks:
+# #   meterstanden_default:
+# #     external: true
+
+
 version: '3.8'
 
 services:
   app:
     build: .
     container_name: recept
-    command: uvicorn app:app --host 0.0.0.0 --port 80 --reload
+    command: uv run uvicorn app:app --host 0.0.0.0 --port 8000 --reload
     ports:
-      - 8083:80
+      - "8083:8000"
     volumes:
       - .:/app
-    restart: always 
-# networks:
-#   meterstanden_default:
-#     external: true
+    restart: always

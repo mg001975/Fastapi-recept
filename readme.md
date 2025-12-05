@@ -136,3 +136,6 @@ This FastAPI project allows for easy management and importing of recipe data int
 
 Happy Cooking! 🍕
 ```
+
+
+http://localhost:8083/
