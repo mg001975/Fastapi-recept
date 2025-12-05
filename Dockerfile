@@ -3,7 +3,10 @@ FROM python:3.11-slim
 ENV UV_SYSTEM_PYTHON=1
 WORKDIR /app
 
-RUN pip install --no-cache-dir uv
+# Install pip and uv system-wide
+RUN pip install --no-cache-dir --upgrade pip \
+    && pip install --no-cache-dir uv \
+    && ln -s /root/.local/bin/uv /usr/local/bin/uv  # maak uv system-wide beschikbaar
 
 COPY . .
 
