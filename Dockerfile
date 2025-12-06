@@ -58,16 +58,14 @@
 FROM python:3.12-slim AS builder
 # COPY --from=ghcr.io/astral-sh/uv:0.6.6 /uv /uvx /bin/
 
+# Copy ONLY uv (uvx no longer exists)
 COPY --from=ghcr.io/astral-sh/uv:0.6.6 /usr/local/bin/uv /usr/local/bin/uv
 
-# Copy the project into the intermediate image
-ADD . /app
-
-# Change the working directory to the `app` directory
 WORKDIR /app
+COPY . .
 
 RUN uv sync --locked
 
 EXPOSE 8000
 
-CMD ["uv", "run", "uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]
+CMD ["uv", "run", "uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8000"]
