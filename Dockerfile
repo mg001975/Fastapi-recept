@@ -1,70 +1,24 @@
-# FROM python:3.11-slim
+FROM python:3.12-slim
 
+# Install system dependencies
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    curl \
+    ca-certificates \
+    && rm -rf /var/lib/apt/lists/*
 
-# COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
-
-# # Change the working directory to the `app` directory
-# WORKDIR /app
-
-# # Install pip and uv system-wide
-# # Install dependencies
-# RUN --mount=type=cache,target=/root/.cache/uv \
-#     --mount=type=bind,source=uv.lock,target=uv.lock \
-#     --mount=type=bind,source=pyproject.toml,target=pyproject.toml \
-#     uv sync --locked --no-install-project
-
-# COPY . .
-
-# RUN uv sync --frozen
-
-# EXPOSE 8000
-
-# CMD ["uv", "run", "uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]
-# Install uv
-
-
-
-
-# FROM python:3.12-slim AS builder
-# COPY --from=ghcr.io/astral-sh/uv:0.6.6 /uv /uvx /bin/
-
-# # Copy the project into the intermediate image
-# ADD . /app
-
-# # Change the working directory to the `app` directory
-# WORKDIR /app
-
-# # Install dependencies
-# RUN --mount=type=cache,target=/root/.cache/uv \
-#     --mount=type=bind,source=uv.lock,target=uv.lock \
-#     --mount=type=bind,source=pyproject.toml,target=pyproject.toml \
-#     uv sync --locked --no-install-project --no-editable
-
-
-
-# # Sync the project
-# RUN --mount=type=cache,target=/root/.cache/uv \
-#     uv sync --locked --no-editable
-
-# FROM python:3.12-slim
-
-# # Copy the environment, but not the source code
-# COPY --from=builder --chown=app:app /app/.venv /app/.venv
-
-# EXPOSE 8000
-# # Run the application
-# CMD ["uv", "run", "uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]
-
-FROM python:3.12-slim AS builder
-# COPY --from=ghcr.io/astral-sh/uv:0.6.6 /uv /uvx /bin/
-
-# Copy ONLY uv (uvx no longer exists)
-COPY --from=ghcr.io/astral-sh/uv:0.6.6 /usr/local/bin/uv /usr/local/bin/uv
+# Install uv manually (correct extraction path)
+RUN curl -L https://github.com/astral-sh/uv/releases/latest/download/uv-x86_64-unknown-linux-gnu.tar.gz -o uv.tar.gz \
+    && tar -xzf uv.tar.gz \
+    && mv uv-x86_64-unknown-linux-gnu/uv /usr/local/bin/uv \
+    && chmod +x /usr/local/bin/uv \
+    && rm -rf uv.tar.gz uv-x86_64-unknown-linux-gnu
 
 WORKDIR /app
+
 COPY . .
 
-RUN uv sync --locked
+# Install dependencies (NO pip)
+RUN uv sync --frozen
 
 EXPOSE 8000
 
