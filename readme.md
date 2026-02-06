@@ -137,5 +137,9 @@ This FastAPI project allows for easy management and importing of recipe data int
 Happy Cooking! 🍕
 ```
 
+uv run uvicorn app:app --reload --port 8002
+
+deleting venv
+uv sync 
 
 http://localhost:8083/
